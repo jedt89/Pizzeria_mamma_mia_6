@@ -9,23 +9,13 @@ import {
   ModalHeader
 } from '@nextui-org/react';
 import { useNavigate } from 'react-router-dom';
-import { PizzaCard } from "../pages";
-import { MainContext } from '../components/context/MainContext';
+import { PizzaCard } from '../pages';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
 
-const PizzaDetail = ({
-  name,
-  price,
-  ingredients,
-  img,
-  desc,
-  id
-}) => {
-  const {
-    detailPizzaClose,
-    detailPizzaOpenChange,
-    detailPizzaIsOpen,
-    handleReturnToHome
-  } = useContext(MainContext);
+const PizzaDetail = ({ name, price, ingredients, img, desc, id }) => {
+  const { handleReturnToHome } = useContext(MainContext);
+  const { detailPizzaClose, detailPizzaOpenChange, detailPizzaIsOpen } = useContext(DialogContext);
   const navigate = useNavigate();
 
   return (

@@ -10,11 +10,12 @@ import {
   ProfileDialog,
   PizzaDetail
 } from './pages';
-import { navbarItems } from './components/models/menu';
+import { navbarItems } from './models/menu';
 import { getPizzas, getPizza } from './service/fetchPizzas';
 import toast from 'react-hot-toast';
-import fields from './components/models/Fields';
-import { MainContext } from './components/context/MainContext';
+import fields from './models/Fields';
+import { MainContext } from './context/MainContext';
+import { DialogContext } from './context/DialogContext';
 import header from './assets/img/header.png';
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
     pizza,
     setPizza,
     setPizzas,
-    setExpanded,
+    setExpanded
+  } = useContext(MainContext);
+
+  const {
     registerDialogOpen,
     registerDialogIsOpen,
     loginDialogOpen,
@@ -33,7 +37,7 @@ function App() {
     detailPizzaOpen,
     detailPizzaIsOpen,
     cartIsOpen
-  } = useContext(MainContext);
+  } = useContext(DialogContext);
 
   const { PIZZA_LIST_UPDATED } = fields;
 

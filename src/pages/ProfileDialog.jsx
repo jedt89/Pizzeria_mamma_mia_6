@@ -10,15 +10,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { TbChartPieFilled } from 'react-icons/tb';
 import profileIcon from '../assets/img/profileIcon.png';
-import { MainContext } from '../components/context/MainContext';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
 
 const ProfileDialog = () => {
-  const {
-    profileClose,
-    profileIsOpen,
-    profileOpenChange,
-    handleReturnToHome
-  } = useContext(MainContext);
+  const { handleReturnToHome } = useContext(MainContext);
+  const { profileClose, profileIsOpen, profileOpenChange } = useContext(DialogContext);
   const navigate = useNavigate();
 
   return (
@@ -40,8 +37,15 @@ const ProfileDialog = () => {
           Perfil
         </ModalHeader>
         <ModalBody>
-          <div className='flex-column align-items-center gap-1rem' style={{ fontWeight: 'bold' }}>
-            <img src={profileIcon} alt='Profile Icon' style={{ height: '100px' }} />
+          <div
+            className='flex-column align-items-center gap-1rem'
+            style={{ fontWeight: 'bold' }}
+          >
+            <img
+              src={profileIcon}
+              alt='Profile Icon'
+              style={{ height: '100px' }}
+            />
             <div>Jonathan Díaz</div>
             <div>jonathan.diaz@pizzeria.com</div>
           </div>

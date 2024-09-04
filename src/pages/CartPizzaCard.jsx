@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button } from '@nextui-org/react';
 import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
-import { MainContext } from '../components/context/MainContext';
+import { MainContext } from '../context/MainContext';
 
 const CartPizzaCard = ({ id, img, name, price, quantity, total }) => {
   const { setTotalPrice, setPizzaAdded } = useContext(MainContext);

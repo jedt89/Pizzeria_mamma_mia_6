@@ -11,30 +11,24 @@ import {
 } from '@nextui-org/react';
 import { TbLock, TbMail } from 'react-icons/tb';
 import { default as toast } from 'react-hot-toast';
-import fields from '../components/models/Fields';
-import { MainContext } from '../components/context/MainContext';
+import fields from '../models/Fields';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
+
 
 const LoginDialog = () => {
-  const {
-    loginDialogClose,
-    loginDialogIsOpen,
-    loginDialogOpenChange,
-    handleReturnToHome
-  } = useContext(MainContext);
-
+  const { handleReturnToHome } = useContext(MainContext);
+  const { loginDialogClose, loginDialogIsOpen, loginDialogOpenChange } = useContext(DialogContext);
   const { FIELD_EMPTY, LOGIN_SUCCESSFULLY, WRONG_PASS_MAIL } = fields;
-
   const [userMail, setUserMail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [emailError, setEmailError] = useState(FIELD_EMPTY);
   const [passError, setPassError] = useState(FIELD_EMPTY);
   const [loginError, setLoginError] = useState(FIELD_EMPTY);
-
   const navigate = useNavigate();
 
-  const validateCredentials = () => (
-    userMail === '1234567' && userPassword === '1234567'
-  );
+  const validateCredentials = () =>
+    userMail === '1234567' && userPassword === '1234567';
 
   const checkFormData = () => {
     if (validateCredentials()) {
@@ -143,18 +137,10 @@ const LoginDialog = () => {
         <ModalFooter>
           <div className='flex-column align-items-center'>
             <div className='display-flex justify-center gap-1rem modal-buttons'>
-              <Button
-                onClick={handleCancel}
-                variant='ghost'
-                color='default'
-              >
+              <Button onClick={handleCancel} variant='ghost' color='default'>
                 Cancelar
               </Button>
-              <Button
-                onClick={handleSubmit}
-                variant='ghost'
-                color='warning'
-              >
+              <Button onClick={handleSubmit} variant='ghost' color='warning'>
                 Aceptar
               </Button>
             </div>

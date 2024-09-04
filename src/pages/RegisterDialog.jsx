@@ -11,25 +11,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { TbLock, TbMail } from 'react-icons/tb';
 import { default as toast } from 'react-hot-toast';
-import fields from '../components/models/Fields';
-import { MainContext } from '../components/context/MainContext';
+import fields from '../models/Fields';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
 
 const RegisterDialog = () => {
-  const {
-    registerDialogClose,
-    registerDialogIsOpen,
-    registerDialogOpenChange,
-    handleReturnToHome
-  } = useContext(MainContext);
-  
-  const {
-    FIELD_EMPTY,
-    REGISTRY_SUCCESSFULLY,
-    MIN_PASS,
-    NOT_EQUAL_PASS,
-    EMPTY_FIELDS
-  } = fields;
-
+  const { handleReturnToHome } = useContext(MainContext);
+  const { registerDialogClose, registerDialogIsOpen, registerDialogOpenChange } = useContext(DialogContext);
   const [userMail, setUserMail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -38,6 +26,13 @@ const RegisterDialog = () => {
   const [repeatPassError, setRepeatPassError] = useState('');
   const [registryError, setRegistryError] = useState('');
   const navigate = useNavigate();
+  const {
+    FIELD_EMPTY,
+    REGISTRY_SUCCESSFULLY,
+    MIN_PASS,
+    NOT_EQUAL_PASS,
+    EMPTY_FIELDS
+  } = fields;
 
   const checkFormData = () => {
     if (userMail === '' || userPassword === '' || repeatPassword === '') {
@@ -51,10 +46,12 @@ const RegisterDialog = () => {
       clearModalData();
       handleReturnToHome();
       navigate('/');
-      setTimeout(() =>
-        toast.success(REGISTRY_SUCCESSFULLY, {
-          position: 'top-right'
-        }), 100
+      setTimeout(
+        () =>
+          toast.success(REGISTRY_SUCCESSFULLY, {
+            position: 'top-right'
+          }),
+        100
       );
     }
   };
@@ -202,11 +199,7 @@ const RegisterDialog = () => {
               >
                 Cancelar
               </Button>
-              <Button
-                onClick={checkFormData}
-                variant='ghost'
-                color='warning'
-              >
+              <Button onClick={checkFormData} variant='ghost' color='warning'>
                 Aceptar
               </Button>
             </div>

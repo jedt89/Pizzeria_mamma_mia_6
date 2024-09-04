@@ -5,13 +5,16 @@ import { Toaster } from 'react-hot-toast';
 import App from './App.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import { MainContextProvider } from './components/context/MainContext.jsx';
+import { MainContextProvider } from './context/MainContext.jsx';
+import { DialogContextProvider } from './context/DialogContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <NextUIProvider>
       <MainContextProvider>
-        <App />
+        <DialogContextProvider>
+          <App />
+        </DialogContextProvider>
       </MainContextProvider>
       <Toaster />
     </NextUIProvider>

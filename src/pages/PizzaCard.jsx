@@ -4,9 +4,11 @@ import { default as toast } from 'react-hot-toast';
 import { PiSealCheckDuotone, PiShoppingCart } from 'react-icons/pi';
 import { VscSettings } from 'react-icons/vsc';
 import pizzaIcon from '../assets/img/pizzaIcon.png';
-import fields from '../components/models/Fields';
+import fields from '../models/Fields';
 import { useNavigate } from 'react-router-dom';
-import { MainContext } from '../components/context/MainContext';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
+
 
 const PizzaCard = ({ desc, id, img, ingredients, name, price, handleExpand }) => {
   const { pizzas, pizzaAdded, setPizzaAdded, setTotalPrice, expanded } = useContext(MainContext);

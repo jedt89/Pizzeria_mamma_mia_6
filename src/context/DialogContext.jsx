@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDisclosure } from '@nextui-org/react';
-import pizzaData from '../models/pizzas';
 
-const MainContext = React.createContext();
+const DialogContext = React.createContext();
 
-const MainContextProvider = ({ children }) => {
-  const [registry, setRegistry] = useState(false);
-  const [pizza, setPizza] = useState(null);
-  const [pizzas, setPizzas] = useState(pizzaData);
-  const [pizzaAdded, setPizzaAdded] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [expanded, setExpanded] = useState(false);
-
+const DialogContextProvider = ({ children }) => {
   const {
     onOpen: registerDialogOpen,
     onClose: registerDialogClose,
@@ -47,26 +39,9 @@ const MainContextProvider = ({ children }) => {
     onOpenChange: detailPizzaOpenChange
   } = useDisclosure();
 
-  const handleReturnToHome = () => {
-    setExpanded(false);
-  };
-
-
   return (
-    <MainContext.Provider
+    <DialogContext.Provider
       value={{
-        registry,
-        setRegistry,
-        pizza,
-        setPizza,
-        pizzas,
-        setPizzas,
-        pizzaAdded,
-        setPizzaAdded,
-        totalPrice,
-        setTotalPrice,
-        expanded,
-        setExpanded,
         registerDialogOpen,
         registerDialogClose,
         registerDialogIsOpen,
@@ -87,12 +62,11 @@ const MainContextProvider = ({ children }) => {
         detailPizzaClose,
         detailPizzaIsOpen,
         detailPizzaOpenChange,
-        handleReturnToHome
       }}
     >
       {children}
-    </MainContext.Provider>
+    </DialogContext.Provider>
   );
 };
 
-export { MainContext, MainContextProvider };
+export { DialogContext, DialogContextProvider };

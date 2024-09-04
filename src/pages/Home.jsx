@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Header } from '../components';
 import { PizzaCard } from '../pages';
-import { MainContext } from '../components/context/MainContext';
+import { MainContext } from '../context/MainContext';
+
 
 const Home = ({ handleExpand }) => {
   const { pizzas } = useContext(MainContext);

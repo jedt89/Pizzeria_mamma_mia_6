@@ -9,19 +9,14 @@ import {
   ModalHeader
 } from '@nextui-org/react';
 import { CartPizzaCard } from '../pages';
-import fields from '../components/models/Fields';
-import { MainContext } from '../components/context/MainContext';
+import fields from '../models/Fields';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
+
 
 const CartDialog = () => {
-  const {
-    pizzaAdded,
-    totalPrice,
-    cartClose,
-    cartIsOpen,
-    cartOpenChange,
-    handleReturnToHome
-  } = useContext(MainContext);
-
+  const { pizzaAdded, totalPrice, handleReturnToHome } = useContext(MainContext);
+  const { cartClose, cartIsOpen, cartOpenChange } = useContext(DialogContext);
   const { CART_DIALOG_TITLE } = fields;
   const navigate = useNavigate();
 
@@ -49,10 +44,7 @@ const CartDialog = () => {
         <ModalBody className='flex flex-column gap-1rem width-100'>
           {pizzaAdded && pizzaAdded.length > 0 ? (
             pizzaAdded.map((pizza, index) => (
-              <CartPizzaCard
-                key={index}
-                {...pizza}
-              />
+              <CartPizzaCard key={index} {...pizza} />
             ))
           ) : (
             <h2>No tienes productos en tu carrito de compras</h2>
@@ -67,18 +59,10 @@ const CartDialog = () => {
               </h2>
             </div>
             <div className='display-flex justify-center gap-1rem modal-buttons'>
-              <Button
-                onClick={handleClose}
-                variant='ghost'
-                color='default'
-              >
+              <Button onClick={handleClose} variant='ghost' color='default'>
                 Cancelar
               </Button>
-              <Button
-                onClick={handleClose}
-                variant='ghost'
-                color='warning'
-              >
+              <Button onClick={handleClose} variant='ghost' color='warning'>
                 Pagar
               </Button>
             </div>

@@ -10,12 +10,14 @@ import {
   DropdownMenu,
   DropdownTrigger
 } from '@nextui-org/react';
-import { MainContext } from './context/MainContext';
+import { MainContext } from '../context/MainContext';
+import { DialogContext } from '../context/DialogContext';
 
 const Navbar = ({ items, disabledButtons }) => {
-  const { totalPrice, cartOpen } = useContext(MainContext);
+  const { totalPrice } = useContext(MainContext);
+  const { cartOpen } = useContext(DialogContext);
   const navigate = useNavigate();
-
+  
   return (
     <div className='nav-container'>
       <div>

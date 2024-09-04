@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Header } from '../components';
 import { PizzaCard } from '../pages';
 import { MainContext } from '../context/MainContext';
+import { color } from 'framer-motion';
 
 
 const Home = ({ handleExpand }) => {
@@ -22,7 +23,7 @@ const Home = ({ handleExpand }) => {
               />
             ))
           ) : (
-            <p>No hay pizzas disponibles</p>
+            <h2 style={{color: '#FFF'}}>No hay pizzas disponibles</h2>
           )}
         </div>
       </div>
